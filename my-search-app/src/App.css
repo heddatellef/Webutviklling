@@ -12,9 +12,12 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.navbar {
+  background-color: white;
+}
 
 .App-header {
-  background-color: #282c34;
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +38,7 @@
   to {
     transform: rotate(360deg);
   }
+}
+.whiteButton {
+  color: "white";
 }
