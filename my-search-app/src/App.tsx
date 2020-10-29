@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
 import { Button } from '@material-ui/core';
-import { BottomNavigationAction } from '@material-ui/core'; 
-import { BottomNavigation } from '@material-ui/core'; 
 import { Input } from '@material-ui/core';
-import { Home, Favorite, AccessTime } from '@material-ui/icons';
-import AddFavourite  from './AddFavourite.js';
-import LabelBottomNavigation from './Navbar';
+import AddFavourite  from './components/AddFavourite';
+import LabelBottomNavigation from './components/Navbar';
+import CountrySelect from './components/SearchCountryName';
+import ChoseCategory from './components/SearchCategory';
 
 
 function App() {
@@ -16,10 +15,10 @@ function App() {
       <LabelBottomNavigation />
     </header>
       <header className="App-header">
-        <Input placeholder="Name" inputProps={{ 'aria-label': 'description' }} />
-        <Input placeholder="Club" inputProps={{ 'aria-label': 'description' }} />
-        <Input placeholder="Country" inputProps={{ 'aria-label': 'description' }} />
-        <Input placeholder="Other"  inputProps={{ 'aria-label': 'description' }} />
+        
+        <CountrySelect />
+        <ChoseCategory />
+
         <Button color="primary">Search</Button>
         <AddFavourite />
       </header>
