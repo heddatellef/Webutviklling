@@ -1,45 +1,43 @@
 import mongoose from "mongoose";
 
-let ratingSchema = new mongoose.Schema({
-    rank: {
-        type: Number,
+export const CountrySchema = new mongoose.Schema({
+    countries: {
+        type: String,
         required: true,
     },
-    country: {
+    name: {
         type: String,
         required: true,
     },
     score: {
-        type: Number,
+        type: String,
         required: true,
     },
     GDP: {
-        type: Number,
+        type: String,
         required: true,
     },
     social: {
-        type: Number,
+        type: String,
         required: true,
     },
     healthy: {
-        type: Number,
+        type: String,
         required: true,
     },
     freedom: {
-        type: Number,
+        type: String,
         required: true,
     },
     generosity: {
-        type: Number,
+        type: String,
         required: true,
     },
     perceptions: {
-        type: Number,
+        type: String,
         required: true,
-    },
-    favorite: {
-        type: Boolean,
     }
 });
 
-export default mongoose.model("rating", ratingSchema, "rating")
+const Country =  mongoose.model("Country", CountrySchema, "countries");
+export default Country;

@@ -4,27 +4,31 @@ import bodyparser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import ratingRoute from "./routes/rating"
+import CountryRoute from "./routes/countries";
+import Country from "./routes/CountryModel";
 
 dotenv.config();
 
 const app = express();
-const port = 8080;
+const port = 8029;
 
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb://gruppe46:gruppe46@it2810-46.idi.ntnu.no:27017/?authSource=gruppe46",{
+mongoose.connect("mongodb://gruppe46:gruppe46@it2810-46.idi.ntnu.no:27017/gruppe46?authSource=gruppe46",{
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
 }).then(() => console.log("Mongodb connected"));
 
 
-//app.use("/rating", ratingRoute);
+app.use("/countries", CountryRoute);
 
-/*app.get("/", (req, res) => {
-    res.send("Home");
-});
+app.get("/", async (req, res) => {
+    //res.send("We are on home");
+    const countries = await Country.find();
+    res.send(countries);
+  });
+    
 
-app.listen(port, () => console.log("App is listening on port" + port)*/
+app.listen(port, () => console.log("App is listening on port: " + port));
