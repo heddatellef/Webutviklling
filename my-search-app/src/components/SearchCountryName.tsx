@@ -2,6 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
+import { Request, Response } from 'express';
 
 // ISO 3166-1 alpha-2
 // ⚠️ No support for IE 11
@@ -38,8 +39,7 @@ export default function CountrySelect() {
       getOptionLabel={(option) => option.label}
       renderOption={(option) => (
         <React.Fragment>
-          <span>{countryToFlag(option.code)}</span>
-            ({option.label}) 
+            {option.label}
         </React.Fragment>
       )}
       renderInput={(params) => (
@@ -58,10 +58,10 @@ export default function CountrySelect() {
 }
 
 interface CountryType {
-  code: string;
   label: string;
-  phone: string;
 }
+
+
 
 // From https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js
 const countries = [
