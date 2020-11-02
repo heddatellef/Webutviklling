@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function ChoseCategory() {
+
+  
+
+
   const classes = useStyles();
   const [age, setAge] = React.useState<string | number>('');
   const [open, setOpen] = React.useState(false);
