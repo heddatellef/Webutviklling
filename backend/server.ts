@@ -22,13 +22,8 @@ mongoose.connect("mongodb://gruppe46:gruppe46@it2810-46.idi.ntnu.no:27017/gruppe
 }).then(() => console.log("Mongodb connected"));
 
 
-app.use("/countries", CountryRoute);
+app.use("/", CountryRoute);
 
-app.get("/", async (req, res) => {
-    //res.send("We are on home");
-    const countries = await Country.find();
-    res.send(countries);
-  });
     
 
 app.listen(port, () => console.log("App is listening on port: " + port));

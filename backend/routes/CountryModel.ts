@@ -1,39 +1,43 @@
 import mongoose from "mongoose";
 
 export const CountrySchema = new mongoose.Schema({
-    countries: {
+    "_id": {
         type: String,
         required: true,
     },
-    name: {
+    "Overall rank": {
         type: String,
         required: true,
     },
-    score: {
+    "Country or region": {
+        type: String, 
+        required: true
+    },
+    "Score": {
         type: String,
         required: true,
     },
-    GDP: {
+    "GDP per capita": {
         type: String,
         required: true,
     },
-    social: {
+    "Social support": {
         type: String,
         required: true,
     },
-    healthy: {
+    "Healthy life expectancy": {
         type: String,
         required: true,
     },
-    freedom: {
+    "Freedom to make life choices": {
         type: String,
         required: true,
     },
-    generosity: {
+    "Generosity": {
         type: String,
         required: true,
     },
-    perceptions: {
+    "Perceptions of corruption": {
         type: String,
         required: true,
     }
