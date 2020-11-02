@@ -10,7 +10,7 @@ import Country from "./routes/CountryModel";
 dotenv.config();
 
 const app = express();
-const port = 8029;
+const port = 8001;
 
 app.use(express.json());
 app.use(cors());
