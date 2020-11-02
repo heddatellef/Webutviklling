@@ -1,4 +1,5 @@
 import React from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import { Button } from '@material-ui/core';
 import { Input } from '@material-ui/core';
