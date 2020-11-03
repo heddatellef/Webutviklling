@@ -3,6 +3,8 @@ import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
+import ExtractCountry from './ExtractCountry';
+
 
 // ISO 3166-1 alpha-2
 // ⚠️ No support for IE 11
@@ -27,13 +29,16 @@ const useStyles = makeStyles({
 export default function CountrySelect() {
   const classes = useStyles();
 
+  //for å få opp alle land og velge land
   const [countries, setCountries] = useState<CountryType[]>([]);
 
 
+//fetcher data og legger det i et interface
   useEffect(() => {
     async function fetchData() {
       const res = await fetch("http://localhost:8029/");
       const jsonres: CountryInterfaceFromBackend[]  = await res.json();
+      //Sørger for at label i "backend-interfacet" (CountryInterfaceFromBackend) mapper til label i det "frontend-interfacet" (CountryType)
       const fetchedCountries: CountryType[] = jsonres.map((value) => { return { label: value["Country or region"] }});
       setCountries(fetchedCountries);
       console.log(fetchedCountries);
@@ -43,8 +48,22 @@ export default function CountrySelect() {
     
   }, []);
 
+  function search(e: any) {
+    if (e.key === "Enter") {
+      return(
+        
+       /* <ExtractCountry >
+          
+        </ExtractCountry>*/
+       <div /> 
+      )
+    }
+  }
+
+  //Koden under er fra material.ui og står for søkefunksjonen 
   return (
     <Autocomplete
+      onKeyDown={search}
       id="country-select-demo"
       style={{ width: 400 }}
       options={countries as CountryType[]}
@@ -61,7 +80,7 @@ export default function CountrySelect() {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Choose a country..."
+          label="Choose a country"
           variant="outlined"
           inputProps={{
             ...params.inputProps,
