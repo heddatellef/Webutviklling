@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 export const CountrySchema = new mongoose.Schema({
-    "_id": {
+    _id: {
         type: String,
         required: true,
     },

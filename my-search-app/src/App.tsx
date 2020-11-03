@@ -7,6 +7,7 @@ import AddFavourite  from './components/AddFavourite';
 import LabelBottomNavigation from './components/Navbar';
 import CountrySelect from './components/SearchCountryName';
 import ChoseCategory from './components/SearchCategory';
+import CountryTable from './components/CountryTable';
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
         <Button color="primary">Search</Button>
         <AddFavourite />
       </header>
-      
+      <CountryTable/>
     </div>
   );
 }
