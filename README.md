@@ -45,14 +45,85 @@ of the top ten countries based on overall rank, and you have the option to load 
 
 The database is set up on a virtual machine.
 
+Other dependencies: 
+- Material-UI: for frontend components 
+
 
 ## Testing 
 We have done e-2-e-testing using Cypress ...
 
 
-## Dokumentasjon 
-### Innhold og funksjonalitet 
+## Documentation 
+### Content and functionality
 
-Søkemulighet eks med en dialog/form/søkefelt for input av søk
-We have implemented the possibility to search with a search field where you can type in the name of a country and the website then shows that 
-specific Country, 
+#### Possibility to search 
+We have implemented the search functionality with a search field where you can type in the name of a country and the website then shows that 
+specific country. The search functionality also autocompletes, and shows a list of all the countries so that you can chose to also scroll down the list 
+and click the country you want to search on. The layout of this function, and also some of the functionality, we have gotten from Material-UI.
+
+#### List-based scrolling 
+We represent the countries in form of a list, where they are sorted on the parameter you chose (overall rank by default). The list is by default a size of ten objects, and when 
+loading more elements, it expands by ten countries at a time. In this way we use scrolling and dynamical loading of elements to show the countries.
+
+#### Possibility to see more details
+For every country there is possible to show details about all parameters. This is done by searching on/chosing the country you would like to see more information about, and then 
+all information is displayed. 
+
+#### Sorting and filtering
+There is possible to sort the dataset on category. Within the chosen category the countries is also automatically sorted from best to worst (ascending order). 
+
+
+#### User interaction
+It is possible to like/upvote each country. This increases the country's number of likes and is saved to the database (saved persistantly to the server). 
+
+#### Design and solutions 
+
+We have chosen to use components from material-UI to save time when developing the frontend design. 
+
+Since we use a dataset where it is interesting to compare the countries with each other on the different parameters they are judged on and that lead to their score, we chose to alway 
+have the data sorted in some way. In this way you can always se which countries that esxells in which areas. We found this to be an informative and intuitive way to deal 
+with the data. Since the parameters in them selves not are that informative, we chose not to filter based on these. For exapmple we found out that filtering on "overall rank
+higher than 50" would be quite uninteresting, likeways with the other parameters. For this reason we chose to only sort based on order in the different categories. 
+
+#### Database 
+We installed the database on a virtual machine. Our dataset consisted of 156 objects. We found this amount to be adaquite to test the functionality of our program.
+
+
+
+### Technology
+
+#### React and Typescript 
+Our user interfaced is based on react and initialized with create-react-app, and implemented in Typescript. The project is based on Node.js.
+
+We have chosen to use functional components in React because we find these easier to work with and that it leads to code that are easier to read and understand. 
+
+We have a components-folder to keep all of our different site-components. We also have a folder "Redux" containing everything that has to do with Redux. Inside this folder we have divided into several folders, one (Types) that keeps our 
+interfaces, one for our reducers and one  to keep the different actions. We see this as a reasonable division to create structure in our folders. 
+
+#### State management with Redux 
+We have used React Redux for state management in our application. Redux makes is possible and easy to store and update global state. The global state is stores in Store 
+(tror ikke vi bruker store, men vi lagerer vel fortsatt verdiene på noen måte? ). We use dispatch to send the action to a reducer. In our case, we only have one reducer; 
+countriesReducer.tsx. This will update the state based on which the action, and which payload that has been sent from dispatch.
+
+
+#### Backend 
+We have used MongoDB as database because this is a popular choice with a lot of documentation that turned out to be helpful. We used a ...API(?) which consisted of [...]-files.
+
+
+#### Express 
+Express is a Node.js library for web applications. We have used Express to create a REST API and communicate with the database. The REST-API with Express and Node works
+as an intermediary between frontend (React) and bakcend (MongoDB). This stack is called MERN (MongoDB, Express, React, Node). This is a quite popular stack which is one of the reasons 
+why we chose it; this means there are a lot of documentation and also it is ineteresting to work with technologies that we know are used frequently in the business. 
+
+We have used a router, and GET and PUT to fetch from and put to the database (router.get, router.put). Express also models the data nicely. We have also used Mongoose to model the scheme
+with the database. 
+
+#### Other components and libraries 
+Axios is a client-library to send http-requests and handle the response. We have used axios to fetch data from the database.
+
+
+
+
+
+
+
