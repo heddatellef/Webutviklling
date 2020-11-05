@@ -26,13 +26,13 @@ export const setSkip = (num:number) => ({
     payload:num
 })
 
-export const setBrand = (brand: string) =>({
-    type: COUNTRY.SET_BRAND,
-    payload:brand
+export const setCategory = (category: string) =>({
+    type: COUNTRY.SET_CATEGORY,
+    payload: category
 })
 
 export const setRating = (rating: number) =>({
-    type: COUNTRY.SET_RATING,
+    type: COUNTRY.SET_LIMIT,
     payload:rating
 })
 

@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import { countryReducer } from '../Redux/Reducers/countriesReducer';
 import {ICountry, ICountryState} from '../Redux/types/countries';
 
+//let category = useSelector<ICountryState, ICountryState["category"]>((state) => state.category); //get current category
+
 
 const CountryListElement = (Country: ICountry) => {
     return (

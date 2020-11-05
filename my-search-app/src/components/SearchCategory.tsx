@@ -5,6 +5,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
+import {ICountry, ICountryState} from '../Redux/types/countries';
+import { useDispatch } from 'react-redux';
+import { setCategory } from '../Redux/Actions/countries';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,15 +24,20 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function ChoseCategory() {
 
-  
+  const dispatch = useDispatch();
 
 
   const classes = useStyles();
-  const [age, setAge] = React.useState<string | number>('');
+
+  const [cat, setCat] = React.useState("");
+  //React.useState<string | string>('');
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAge(event.target.value as number);
+    setCat(event.target.value as string);
+    dispatch(setCategory(cat));
+    console.log("hei", cat);
+
   };
 
   const handleClose = () => {
@@ -51,19 +59,19 @@ export default function ChoseCategory() {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={age}
+          value={cat}
           onChange={handleChange}
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Overall rank</MenuItem>
-          <MenuItem value={20}>GPD per capita</MenuItem>
-          <MenuItem value={10}>Social support</MenuItem>
-          <MenuItem value={20}>Healthy life expectancy</MenuItem>
-          <MenuItem value={30}>Freedom to make life choices</MenuItem>
-          <MenuItem value={30}>Generosity</MenuItem>
-          <MenuItem value={30}>Perception of corruption</MenuItem>
+          <MenuItem value={"Overall rank"}>Overall rank</MenuItem>
+          <MenuItem value={"GDP per capita"}>GPD per capita</MenuItem>
+          <MenuItem value={"Social support"}>Social support</MenuItem>
+          <MenuItem value={"Healthy life expectancy"}>Healthy life expectancy</MenuItem>
+          <MenuItem value={"Freedom to make life choices"}>Freedom to make life choices</MenuItem>
+          <MenuItem value={"Generosity"}>Generosity</MenuItem>
+          <MenuItem value={"Perception of corruption"}>Perception of corruption</MenuItem>
         </Select>
       </FormControl>
     </div>

@@ -40,6 +40,10 @@ export const CountrySchema = new mongoose.Schema({
     "Perceptions of corruption": {
         type: String,
         required: true,
+    },
+    "Likes": {
+        type: Number,
+        required: true,
     }
 });
 

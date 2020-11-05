@@ -10,11 +10,10 @@ import countries from '../../components/CountryListElement';
 const initialState = {
     countries: [],
     searchWord: "",
-    skip: 10,
+    skip: 0,
     limit: 10,
-    sort: -1,
-    brand: "",
-    rating: 0
+    sort: 1,
+    category: "",
 }
 
 //reducer list and filters/sort
@@ -30,19 +29,20 @@ export const countryReducer: Reducer<ICountryState, Action> = (
             state = {...state, skip: action.payload }
             return state
 
-        case COUNTRY.SET_BRAND:
+        case COUNTRY.SET_CATEGORY:
             if (typeof action.payload !== 'string'){
                 return state;
             } 
-            state = {...state, countries:state.countries, brand: action.payload }
+            state = {...state, category: action.payload }
             return state
 
-        case COUNTRY.SET_RATING:
+        case COUNTRY.SET_LIMIT:
             if (typeof action.payload !== 'number'){
                 return state;
             } 
-            state = {...state, rating: action.payload}
+            state = {...state, limit: action.payload}
             return state
+
         case COUNTRY.SET_SORTING:
             if (typeof action.payload !== 'number'){
                 return state;
