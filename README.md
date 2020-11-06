@@ -23,7 +23,7 @@ The website will now be running at http://localhost:3000
 ## Motivation 
 This project is developed in the the subject Web Devlopment (IT2810) at NTNU. The task was to implement frontend and backend of a website with focus on search. 
 
-We have devloped a website containing the top 156 happiest countries according to FN's 2020 World's Happiness Report. The site has the functionality to search amongst the countries and 
+We have devloped a website containing the top 156 happiest countries according to FN's 2019 World's Happiness Report. The site has the functionality to search amongst the countries and 
 display information about a specific country of your choice. There is also the functionality to sort the countries based on the different factors they have been judged on, such as 
 perception og corruption and freedom to make life choices. This functionality will sort from top to bottom (best to worst). On the initial front page you will find a list 
 of the top ten countries based on overall rank, and you have the option to load more countries by their order.
