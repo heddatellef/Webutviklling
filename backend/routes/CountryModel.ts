@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 export const CountrySchema = new mongoose.Schema({
-    _id: {
+    "_id": {
         type: String,
         required: true,
     },
@@ -42,8 +42,8 @@ export const CountrySchema = new mongoose.Schema({
         required: true,
     },
     "Likes": {
-        type: Number,
-        required: true,
+        type: Number, 
+        required: true
     }
 });
 

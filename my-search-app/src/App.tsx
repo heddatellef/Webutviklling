@@ -10,13 +10,17 @@ import ChoseCategory from './components/SearchCategory';
 import CountryTable from './components/CountryTable';
 
 
+
 function App() {
   return (
     <div className="App"> 
       <header className="App-header">  
         <CountrySelect />
-        <Button color="primary">Search</Button>
+      
         <ChoseCategory />
+
+        
+        <AddFavourite />
       </header>
       <CountryTable/>
       <footer>

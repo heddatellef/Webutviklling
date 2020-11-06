@@ -54,6 +54,10 @@ export default function ChoseCategory() {
     setOpen(true);
   };
 
+  const onClick = () => {
+
+  }
+
   return (
     <div>
       
@@ -79,6 +83,7 @@ export default function ChoseCategory() {
           <MenuItem value={"Generosity"}>Generosity</MenuItem>
           <MenuItem value={"Perception_of_corruption"}>Perception of corruption</MenuItem>
         </Select>
+        <Button color="primary" >Search</Button>
       </FormControl>
     </div>
   );
