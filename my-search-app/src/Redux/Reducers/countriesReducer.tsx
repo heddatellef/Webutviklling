@@ -26,7 +26,7 @@ const initialState = {
     countries: [], //setInitialCountries
     searchWord: "",
     name: "",
-    skip: 10,
+    skip: 0,
     limit: 10,
     sort: 1,
     category: "",
