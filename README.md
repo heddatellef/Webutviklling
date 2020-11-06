@@ -19,6 +19,11 @@ npm start
 
 The website will now be running at http://localhost:3000
 
+To run the tests(needs to be done after backend and frontend have started):
+
+1: run npm install cypress in my-search-app
+2: run npm test
+
 
 ## Motivation 
 This project is developed in the the subject Web Devlopment (IT2810) at NTNU. The task was to implement frontend and backend of a website with focus on search. 
@@ -50,7 +55,8 @@ Other dependencies:
 
 
 ## Testing 
-We have done e-2-e-testing using Cypress ...
+We have done e-2-e-testing using Cypress where we go through the search function and that the data has loaded and the load more function.
+We have also created a test with jest which tests redux.
 
 
 ## Documentation 
