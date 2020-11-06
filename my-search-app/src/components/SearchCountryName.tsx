@@ -10,16 +10,8 @@ import { setSearchWord } from "../Redux/Actions/countries";
 import { useSelector, useDispatch } from "react-redux";
 
 
-
 // ISO 3166-1 alpha-2
 // ⚠️ No support for IE 11
-function countryToFlag(isoCode: string) {
-  return typeof String.fromCodePoint !== 'undefined'
-    ? isoCode
-        .toUpperCase()
-        .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397))
-    : isoCode;
-}
 
 const useStyles = makeStyles((theme: Theme) => 
 createStyles({
@@ -64,20 +56,27 @@ export default function CountrySelect() {
 
   const [value, setValue] = useState("");
 
+  //opdaterer value når man skriver i søkefeltet
   const handleSearchChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(event.target.value);
     console.log("Value: ", value);
-    return value;
   }
+  /*onTagsChange = (event, values) => {
+    this.setState({
+      tags: values
+    }, () => {
+      // This will output an array of objects
+      // given by Autocompelte options property.
+      console.log(this.state.tags);
+    });
+  }*/
+  
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
+  //åpner popup vindu når man trykker "Search". Vil også at denne funksjonen skal sette value til det som står i search field 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
-
-    function handleSearchClick(event: React.ChangeEvent<HTMLTextAreaElement>) {
-      setValue(event.target.value);
-      return value;
-    }
+    console.log("Anchor: ", anchorEl);
     
     dispatch(setSearchWord(value));
     
@@ -90,17 +89,21 @@ export default function CountrySelect() {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
-  //Koden under er fra material.ui og står for søkefunksjonen 
+  //Koden under er fra material.ui 
   return (
     <div>
     <Autocomplete
-
       id="country-select-demo"
       style={{ width: 400 }}
       options={countries as CountryType[]}
       classes={{
         option: classes.option,
       }}
+      onChange={(e: object, value: any | null) => {
+        if (value !== null) {
+          setValue(value.label)
+        }
+        console.log(value)}}
       autoHighlight
       getOptionLabel={(option) => option.label}
       renderOption={(option) => (
