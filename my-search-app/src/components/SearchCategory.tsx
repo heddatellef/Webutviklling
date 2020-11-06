@@ -22,8 +22,6 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function ChoseCategory() {
 
   
-
-
   const classes = useStyles();
   const [age, setAge] = React.useState<string | number>('');
   const [open, setOpen] = React.useState(false);
@@ -39,6 +37,10 @@ export default function ChoseCategory() {
   const handleOpen = () => {
     setOpen(true);
   };
+
+  const onClick = () => {
+
+  }
 
   return (
     <div>
@@ -57,14 +59,15 @@ export default function ChoseCategory() {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Overall rank</MenuItem>
-          <MenuItem value={20}>GPD per capita</MenuItem>
-          <MenuItem value={10}>Social support</MenuItem>
-          <MenuItem value={20}>Healthy life expectancy</MenuItem>
-          <MenuItem value={30}>Freedom to make life choices</MenuItem>
-          <MenuItem value={30}>Generosity</MenuItem>
-          <MenuItem value={30}>Perception of corruption</MenuItem>
+          <MenuItem value={"Overall rank"}>Overall rank</MenuItem>
+          <MenuItem value={"GDP per capita"}>GPD per capita</MenuItem>
+          <MenuItem value={"Social support"}>Social support</MenuItem>
+          <MenuItem value={"Healthy life expectancy"}>Healthy life expectancy</MenuItem>
+          <MenuItem value={"Freedom to make life choices"}>Freedom to make life choices</MenuItem>
+          <MenuItem value={"Generosity"}>Generosity</MenuItem>
+          <MenuItem value={"Perception of corruption"}>Perception of corruption</MenuItem>
         </Select>
+        <Button color="primary" >Search</Button>
       </FormControl>
     </div>
   );

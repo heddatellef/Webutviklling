@@ -7,7 +7,7 @@ export default function(name: String) {
 
     useEffect(() => {
         async function fetchData() {
-          const res = await fetch("http://localhost:8029/");
+          const res = await fetch("http://localhost:8001/");
           res.json().then(res => setCountry(res));
     
         }
