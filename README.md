@@ -101,9 +101,9 @@ We have a components-folder to keep all of our different site-components. We als
 interfaces, one for our reducers and one  to keep the different actions. We see this as a reasonable division to create structure in our folders. 
 
 #### State management with Redux 
-We have used React Redux for state management in our application. Redux makes is possible and easy to store and update global state. The global state is stores in Store 
-(tror ikke vi bruker store, men vi lagerer vel fortsatt verdiene på noen måte? ). We use dispatch to send the action to a reducer. In our case, we only have one reducer; 
-countriesReducer.tsx. This will update the state based on which the action, and which payload that has been sent from dispatch.
+We have used React Redux for state management in our application. Redux makes is possible and easy to store and update global state. The global state is stores in Store. We use dispatch to send the action to a reducer. In our case, we only have one reducer; 
+countriesReducer.tsx. This will update the state based on which action, and which payload that has been sent from dispatch. We have used Redux to manipulate the table at the bottom of the website. Redux is used to save the category which the user has choisen to rank the results by.
+A skip value in redux is used for the pagination of the table.
 
 
 #### Backend 
