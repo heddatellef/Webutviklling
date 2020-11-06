@@ -9,8 +9,8 @@ import {ICountry, ICountryState} from '../Redux/types/countries';
 const CountryListElement = (Country: ICountry) => {
     return (
         <tr>
-            <td>{Country["Overall rank"]}</td>
-            <td>{Country["Country or region"]}</td>
+            <td>{Country["Overall_rank"]}</td>
+            <td>{Country["Country_or_region"]}</td>
         </tr>
 
     )

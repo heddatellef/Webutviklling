@@ -10,6 +10,8 @@ import { setSearchWord } from "../Redux/Actions/countries";
 import { useSelector, useDispatch } from "react-redux";
 import { ICountry } from '../Redux/types/countries';
 import './popup.css';
+import { IconButton } from '@material-ui/core';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 // ISO 3166-1 alpha-2
 // ⚠️ No support for IE 11
@@ -29,6 +31,9 @@ createStyles({
   button: {
     display: 'block',
     outline: 'none'
+  }, 
+  iconButton: {
+    alignSelf: 'center', 
   }
 }));
 
@@ -47,7 +52,7 @@ export default function CountrySelect() {
       const res = await fetch("http://localhost:8001/");
       const jsonres: CountryInterfaceFromBackend[]  = await res.json();
       //Sørger for at label i "backend-interfacet" (CountryInterfaceFromBackend) mapper til label i det "frontend-interfacet" (CountryType)
-      const fetchedCountries: CountryType[] = jsonres.map((value) => { return { label: value["Country or region"] }});
+      const fetchedCountries: CountryType[] = jsonres.map((value) => { return { label: value["Country_or_region"] }});
       setCountries(fetchedCountries);
 
 
@@ -65,16 +70,7 @@ export default function CountrySelect() {
     setValue(event.target.value);
     console.log("Value: ", value);
   }
-  /*onTagsChange = (event, values) => {
-    this.setState({
-      tags: values
-    }, () => {
-      // This will output an array of objects
-      // given by Autocompelte options property.
-      console.log(this.state.tags);
-    });
-  }*/
-  
+
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
   //åpner popup vindu når man trykker "Search". Vil også at denne funksjonen skal sette value til det som står i search field 
@@ -84,8 +80,6 @@ export default function CountrySelect() {
 
     const res = await fetch("http://localhost:8001/"+value);
       const jsonres: ICountry[]  = await res.json();
-      //Sørger for at label i "backend-interfacet" (CountryInterfaceFromBackend) mapper til label i det "frontend-interfacet" (CountryType)
-      //const fetchedCountries: CountryType[] = jsonres.map((value) => { return { label: value["Country or region"] }});
       console.log(jsonres);
       setCountry(jsonres[0]);
 
@@ -97,6 +91,20 @@ export default function CountrySelect() {
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
+
+
+  async function handleFavoriteClick(event: React.MouseEvent<HTMLButtonElement>) {
+    const countryid = country?._id;
+    const likes = country?.["Likes"] as number;
+
+    await fetch('http://localhost:8001/' + countryid, {
+      method: 'PUT',
+      body: JSON.stringify({update: likes+1}),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  }
 
   //Koden under er fra material.ui 
   return (
@@ -149,16 +157,20 @@ export default function CountrySelect() {
         }}
       >
         <Typography className={classes.typography}>
-         <h5>{country?.["Country or region"]}</h5>
-         <div>Overall rank: {country?.["Overall rank"]}</div>
+         <h5>{country?.["Country_or_region"]}</h5>
+         <div>Overall rank: {country?.["Overall_rank"]}</div>
          <div className="smallDiv"> The overall rank explains how a country is rated compared to the other countries.</div>
-         <div>GDP per capita: {country?.["GDP per capita"]}</div>
+         <div>GDP per capita: {country?.["GDP_per_capita"]}</div>
          <div className="smallDiv">Per capita gross domestic product (GDP) is a metric that breaks down a country's economic output per person and is calculated by dividing the GDP of a country by its population.</div>
-         <div>Social support: {country?.["Social support"]}</div>
-         <div>Healthy life expectancy: {country?.["Healthy life expectancy"]}</div>
-         <div>Freedom to make life choices: {country?.["Freedom to make life choices"]}</div>
+         <div>Social support: {country?.["Social_support"]}</div>
+         <div>Healthy life expectancy: {country?.["Healthy_life_expectancy"]}</div>
+         <div>Freedom to make life choices: {country?.["Freedom_to_make_life_choices"]}</div>
          <div>Generosity: {country?.["Generosity"]}</div>
-         <div>Perceptions of corruption: {country?.["Perceptions of corruption"]}</div>
+         <div>Perceptions of corruption: {country?.["Perceptions_of_corruption"]}</div>
+         <div>Likes: {country?.["Likes"]}</div>
+         <IconButton color="primary" aria-label="favorite" onClick={handleFavoriteClick}>
+            <FavoriteIcon />
+         </IconButton>
         </Typography>
       </Popover>
 
@@ -171,5 +183,5 @@ export interface CountryType {
 }
 
 export interface CountryInterfaceFromBackend {
-  "Country or region": string;
+  "Country_or_region": string;
 }

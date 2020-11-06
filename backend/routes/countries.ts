@@ -14,20 +14,16 @@ router.get('/', (req: Request, res: Response) => {
   Country.find()
   .then(countries => res.json(countries));
 });
-/*
-router.get('/', (req: Request, res: Response) => {
-  function getCountries(res: Response, body: any) {
-    var parseBody = JSON.parse(body);
-    var name = parseBody["Country or region"];
-    res.send({ name });
-  }
-  getCountries;
-});*/
 
 router.get('/:country', (req: Request, res: Response) => {
   const country = req.params.country;
-  Country.find({"Country or region": country})
+  Country.find({"Country_or_region": country})
   .then(countries => res.json(countries));
+});
+ 
+router.put('/:_id', (req: Request, res: Response) => {
+  const country = req.params._id;
+  Country.findOneAndUpdate({_id: country}, {$inc : {"Likes" : 1}})
 });
 
 export default router;
