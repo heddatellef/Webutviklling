@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
+import {ICountry, ICountryState} from '../Redux/types/countries';
+import { useDispatch, useSelector } from 'react-redux';
+import { emptyList, getErrorMessage, getSearched, setCategory, setSkip } from '../Redux/Actions/countries';
+import Axios from 'axios';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,13 +25,25 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function ChoseCategory() {
 
+  const dispatch = useDispatch();
+  const skip = useSelector<ICountryState, ICountryState["skip"]>((state) => state.skip); //get current skip
+  const category = useSelector<ICountryState, ICountryState["category"]>((state) => state.category); //get current category
+  const countries: ICountry[] = useSelector ((state: ICountryState) => state.countries)
   
   const classes = useStyles();
-  const [age, setAge] = React.useState<string | number>('');
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAge(event.target.value as number);
+  const handleChange = async (event: React.ChangeEvent<{ value: any }>) => {
+    dispatch(emptyList())
+    dispatch(setCategory(event.target.value));
+    console.log("Search Category global:", category);
+    try {
+      const result = await Axios.get (`http://localhost:8001?category=${event.target.value}&limit=10&skip=`) 
+      dispatch(getSearched(result.data))
+    }
+    catch(e){
+      dispatch(getErrorMessage("error when searching"))
+    }
   };
 
   const handleClose = () => {
@@ -53,19 +69,19 @@ export default function ChoseCategory() {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={age}
+          //value={Cat}
           onChange={handleChange}
         >
-          <MenuItem value="">
+          <MenuItem value=""  >
             <em>None</em>
           </MenuItem>
-          <MenuItem value={"Overall rank"}>Overall rank</MenuItem>
-          <MenuItem value={"GDP per capita"}>GPD per capita</MenuItem>
-          <MenuItem value={"Social support"}>Social support</MenuItem>
-          <MenuItem value={"Healthy life expectancy"}>Healthy life expectancy</MenuItem>
-          <MenuItem value={"Freedom to make life choices"}>Freedom to make life choices</MenuItem>
+          <MenuItem value={"Overall_rank"}>Overall rank</MenuItem>
+          <MenuItem value={"GDP_per_capita"}>GPD per capita</MenuItem>
+          <MenuItem value={"Social_support"}>Social support</MenuItem>
+          <MenuItem value={"Healthy_life_expectancy"}>Healthy life expectancy</MenuItem>
+          <MenuItem value={"Freedom_to_make_life_choices"}>Freedom to make life choices</MenuItem>
           <MenuItem value={"Generosity"}>Generosity</MenuItem>
-          <MenuItem value={"Perception of corruption"}>Perception of corruption</MenuItem>
+          <MenuItem value={"Perception_of_corruption"}>Perception of corruption</MenuItem>
         </Select>
         <Button color="primary" >Search</Button>
       </FormControl>

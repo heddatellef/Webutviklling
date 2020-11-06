@@ -14,11 +14,7 @@ import CountryTable from './components/CountryTable';
 function App() {
   return (
     <div className="App"> 
-    <header className="top">
-      <LabelBottomNavigation />
-    </header>
-      <header className="App-header">
-        
+      <header className="App-header">  
         <CountrySelect />
       
         <ChoseCategory />
@@ -27,6 +23,9 @@ function App() {
         <AddFavourite />
       </header>
       <CountryTable/>
+      <footer>
+        <p>© 2020</p>
+      </footer>
     </div>
   );
 }

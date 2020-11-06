@@ -3,40 +3,41 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { ICountry, ICountryState } from '../Redux/types/countries';
 import Axios from 'axios';
-import { getErrorMessage, getSearched, setSkip } from '../Redux/Actions/countries';
-import { Table } from '@material-ui/core';
+import { getErrorMessage, getSearched, setSkip, setCategory } from '../Redux/Actions/countries';
 import CountryListElement from './CountryListElement';
-import { findAllByAltText } from '@testing-library/react';
+import { Button, Table } from '@material-ui/core';
+import './CountryTable.css';
 
 const CountryTable = () => {
-    const searchWord = useSelector<ICountryState, ICountryState["searchWord"]>((state) => state.searchWord); //get current search word
-    const skip = useSelector<ICountryState, ICountryState["skip"]>((state) => state.skip); //get current skip
-    const brand = useSelector<ICountryState, ICountryState["brand"]>((state) => state.brand); //get current brand
-    const rating = useSelector<ICountryState, ICountryState["rating"]>((state) => state.rating); //get current rating
-    const sort = useSelector<ICountryState, ICountryState["sort"]>((state) => state.sort); //get current sort
-    
     const countries: ICountry[] = useSelector (
         (state: ICountryState) => state.countries)
-        const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const searchWord = useSelector<ICountryState, ICountryState["searchWord"]>((state) => state.searchWord); //get current search word
+    const skip = useSelector<ICountryState, ICountryState["skip"]>((state) => state.skip); //get current skip
+    const sort = useSelector<ICountryState, ICountryState["sort"]>((state) => state.sort); //get current sort
+    const limit = useSelector<ICountryState, ICountryState["limit"]>((state) => state.limit); //get current sort
+    const category = useSelector<ICountryState, ICountryState["category"]>((state) => state.category); //get current category
 
-   /*const [countries, setCountry]  = useState<Array<string>>([]);
-   /*const dispatch = useDispatch();
+    //const [Sk, setSk] = useState(10);
+    //const [Cat, setCat] = useState("");
 
-   useEffect(() => {
-       async function fetchData() {
-         const res = await fetch("http://localhost:8001/");
-         res.json().then(res => setCountry(res));
-   
-       }
-       fetchData(); 
-       
-     }, []);*/
+    useEffect(() => {     
+        loadMoreCountryClick();
+    },[]);
 
     const loadMoreCountryClick = async() => {
         dispatch(setSkip(skip+10))
+        //setSk(Sk+10)
         try {
-            const result = await Axios.get ('http://localhost:8001/')
+            const result = await Axios.get (`http://localhost:8001?category=${category}&limit=10&skip=${skip}`) 
             dispatch(getSearched(result.data))
+            console.log("getSearched",result.data)
+            console.log("contries:",countries)
+            console.log("result:",result)
+            //console.log("local skip:",Sk)
+            console.log("global skip:",skip)
+            console.log("limit:",limit)
+            console.log("category:", category)
         }
         catch(e){
             dispatch(getErrorMessage("error when searching"))
@@ -47,20 +48,20 @@ const CountryTable = () => {
     return (
         <div>
             <div>
-                <h1>Resultater</h1>
-                <Table>
+                <Table >
                     <thead>
                         <tr>
+                            <th>Value for selected category</th> 
+                            <th>Country</th>
                             <th>Overall rank</th>
-                            <th>Name</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {countries.map((ICountry) => <CountryListElement { ...ICountry} />)}
+                        {countries.map((ICountry) => <CountryListElement { ...ICountry} key={ICountry._id}/>)}
                     </tbody>
                 </Table>
             </div>
-        <button onClick={() => loadMoreCountryClick()}>Load more</button>
+        <Button onClick={() => loadMoreCountryClick()}>Load more...</Button>
         </div>
     );
 };

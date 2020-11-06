@@ -1,14 +1,14 @@
 export interface ICountry {
-    _id: String,
-    "Overall_rank": String,
-    "Country_or_region": String,
-    "Score": string,
-    "GDP_per_capita": string,
-    "Social_support": string,
-    "Healthy_life_expectancy": string,
-    "Freedom_to_make_life_choices": string,
-    "Generosity": string,
-    "Perceptions_of_corruption": string,
+    _id: string,
+    "Overall_rank": number,
+    "Country_or_region": string,
+    "Score": number,
+    "GDP_per_capita": number,
+    "Social_support": number,
+    "Healthy_life_expectancy": number,
+    "Freedom_to_make_life_choices": number,
+    "Generosity": number,
+    "Perceptions_of_corruption": number,
     "Likes": number
 }
 
@@ -18,8 +18,7 @@ export interface ICountryState{
     skip: number,
     limit: number,
     sort: number,
-    brand: string,
-    rating: number
+    category: string
 }
 
 export type Action = {
