@@ -35,9 +35,13 @@ router.get('/:country', (req: Request, res: Response) => {
   .then(countries => res.json(countries));
 });
  
-router.put('/:_id', (req: Request, res: Response) => {
-  const country = req.params._id;
-  Country.findOneAndUpdate({_id: country}, {$inc : {"Likes" : 1}})
+router.put('/:id', (req: Request, res: Response) => {
+  const country = req.params.id;
+  Country.findByIdAndUpdate({_id: country}, {$inc : {"Likes" : 1}}, 
+  {
+    new:true
+  }).update().then(() => res.json())
+  .catch((err: string) => res.status(404).json("Error: "+err));
 });
 
 export default router;

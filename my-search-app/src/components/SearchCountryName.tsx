@@ -31,8 +31,8 @@ createStyles({
     display: 'block',
     outline: 'none'
   }, 
-  iconButton: {
-    alignSelf: 'center', 
+  IconButton: {
+    alignSelf: 'right', 
   }
 }));
 
@@ -89,18 +89,14 @@ export default function CountrySelect() {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
+  const [countryid, setCountryid] = useState("");
 
   async function handleFavoriteClick(event: React.MouseEvent<HTMLButtonElement>) {
-    const countryid = country?._id;
-    const likes = country?.["Likes"] as number;
+    setCountryid(country?._id as string);
+    //const likes = country?.["Likes"] as number;
 
-    await fetch('http://localhost:8001/countries' + countryid, {
-      method: 'PUT',
-      body: JSON.stringify({update: likes+1}),
-      headers: {
-          'Content-Type': 'application/json'
-      }
-  })
+  await fetch ('http://localhost:8001/'+countryid);
+  console.log("CountryID: ", countryid);
   }
 
   //Koden under er (delvis) fra material.ui 
@@ -160,10 +156,15 @@ export default function CountrySelect() {
          <div>GDP per capita: {country?.["GDP_per_capita"]}</div>
          <div className="smallDiv">Per capita gross domestic product (GDP) is a metric that breaks down a country's economic output per person and is calculated by dividing the GDP of a country by its population.</div>
          <div>Social support: {country?.["Social_support"]}</div>
+         <div className="smallDiv">Social support is the national average of the binary responses (either 0 or 1) to the Gallup World Poll (GWP) question “If you were in trouble, do you have relatives or friends you can count on to help you whenever you need them, or not?”</div>
          <div>Healthy life expectancy: {country?.["Healthy_life_expectancy"]}</div>
+         <div className="smallDiv">Healthy life expectancy at birth is an estimate of the average number of years babies born this year would live in a state of 'good' general health if mortality levels at each age, and the level of good health at each age, remain constant in the future.</div> 
          <div>Freedom to make life choices: {country?.["Freedom_to_make_life_choices"]}</div>
+         <div className="smallDiv">Freedom to make life choices is the national average of responses to the question “Are you satisfied or dissatisfied with your freedom to choose what you do with your life?”</div>
          <div>Generosity: {country?.["Generosity"]}</div>
+         <div className="smallDiv">Generosity is the residual of regressing the national average of GWP responses to the question “Have you donated money to a charity in the past month?” on GDP per capita.</div>
          <div>Perceptions of corruption: {country?.["Perceptions_of_corruption"]}</div>
+         <div className="smallDiv">Perceptions of corruption are the average of binary answers to two GWP questions: “Is corruption widespread throughout the government or not?” and “Is corruption widespread within businesses or not?” Where data for government corruption are missing, the perception of business corruption is used as the overall corruption-perception measure.</div>
          <div>Likes: {country?.["Likes"]}</div>
          <IconButton color="primary" aria-label="favorite" onClick={handleFavoriteClick}>
             <FavoriteIcon />
