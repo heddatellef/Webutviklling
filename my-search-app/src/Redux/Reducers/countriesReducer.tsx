@@ -25,7 +25,8 @@ const setInitialCountries = async () => {
 const initialState = {
     countries: [], //setInitialCountries
     searchWord: "",
-    skip: 0,
+    name: "",
+    skip: 10,
     limit: 10,
     sort: 1,
     category: "",
@@ -88,6 +89,7 @@ export const countryReducer: Reducer<ICountryState, Action> = (
                 return state;            }
             state = {...state, countries:[]};
             return state
+
         default:
             return state
     }
