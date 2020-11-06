@@ -138,7 +138,7 @@ export default function CountrySelect() {
         />
       )}    
     />
-    <Button color="primary" onClick={handleClick} >Search</Button>
+    <Button id="popupButton" color="primary" onClick={handleClick} >Search</Button>
     <Popover
         id={id}
         open={open}

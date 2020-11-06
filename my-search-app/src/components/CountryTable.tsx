@@ -36,7 +36,7 @@ const CountryTable = () => {
     
     return (
         <div>
-            <div>
+            <div id="result_table">
                 <Table >
                     <thead>
                         <tr>
@@ -55,7 +55,7 @@ const CountryTable = () => {
                     </tbody>
                 </Table>
             </div>
-        <Button onClick={() => loadMoreCountryClick()}>Load more...</Button>
+        <Button id="results" onClick={() => loadMoreCountryClick()}>Load more...</Button>
         </div>
     );
 };

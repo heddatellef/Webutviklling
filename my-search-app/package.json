@@ -34,7 +34,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "cy:open": "cypress open",
+    "test:jest": "react-scripts test",
+    "test:cy": "cypress run",
+    "test": "npm run test:cy && npm run test:jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
