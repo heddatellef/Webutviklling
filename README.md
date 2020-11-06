@@ -47,6 +47,7 @@ of the top ten countries based on overall rank, and you have the option to load 
 - Redux: Library used frontend 
 - HTML: language used in frotend 
 - CSS: language used in frontend 
+- Cypress: end to end testing framework
 
 The database is set up on a virtual machine.
 
