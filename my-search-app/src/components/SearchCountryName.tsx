@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -39,7 +38,6 @@ createStyles({
 
 export default function CountrySelect() {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
   //for å få opp alle land og velge land
   const [countries, setCountries] = useState<CountryType[]>([]);
@@ -54,7 +52,6 @@ export default function CountrySelect() {
       //Sørger for at label i "backend-interfacet" (CountryInterfaceFromBackend) mapper til label i det "frontend-interfacet" (CountryType)
       const fetchedCountries: CountryType[] = jsonres.map((value) => { return { label: value["Country_or_region"] }});
       setCountries(fetchedCountries);
-
 
     }
     fetchData(); 
@@ -83,7 +80,7 @@ export default function CountrySelect() {
       console.log(jsonres);
       setCountry(jsonres[0]);
 
-  }
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -97,7 +94,7 @@ export default function CountrySelect() {
     const countryid = country?._id;
     const likes = country?.["Likes"] as number;
 
-    await fetch('http://localhost:8001/' + countryid, {
+    await fetch('http://localhost:8001/countries' + countryid, {
       method: 'PUT',
       body: JSON.stringify({update: likes+1}),
       headers: {
@@ -106,7 +103,7 @@ export default function CountrySelect() {
   })
   }
 
-  //Koden under er fra material.ui 
+  //Koden under er (delvis) fra material.ui 
   return (
     <div>
     <Autocomplete

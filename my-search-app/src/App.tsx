@@ -4,7 +4,6 @@ import './App.css';
 import { Button } from '@material-ui/core';
 import { Input } from '@material-ui/core';
 import AddFavourite  from './components/AddFavourite';
-import LabelBottomNavigation from './components/Navbar';
 import CountrySelect from './components/SearchCountryName';
 import ChoseCategory from './components/SearchCategory';
 import CountryTable from './components/CountryTable';
