@@ -30,7 +30,8 @@ This project is developed in the the subject Web Devlopment (IT2810) at NTNU. Th
 
 We have devloped a website containing the top 156 happiest countries according to FN's 2019 World's Happiness Report. The site has the functionality to search amongst the countries and 
 display information about a specific country of your choice. There is also the functionality to sort the countries based on the different factors they have been judged on, such as 
-perception og corruption and freedom to make life choices. This functionality will sort from top to bottom (best to worst). On the initial front page you will find a list 
+perception og corruption and freedom to make life choices. This functionality will sort from low to high, in some cases that will be from best to worst and in others from worst to best.
+This depens on the parameter. On the initial front page you will find a list 
 of the top ten countries based on overall rank, and you have the option to load more countries by their order.
 
 
@@ -58,30 +59,33 @@ Other dependencies:
 ## Testing 
 We have done e-2-e-testing using Cypress where we go through the search function and that the data has loaded and the load more function.
 We have also created a test with jest which tests redux.
-We chose cypress and jest as they were easy to use and were recommended in the testing lecture.
+We chose cypress and jest as they were easy to use and recommended in the testing lecture.
 
 ## Documentation 
 ### Content and functionality
 
 #### Possibility to search 
-We have implemented the search functionality with a search field where you can type in the name of a country and the website then shows that 
-specific country. The search functionality also autocompletes, and shows a list of all the countries so that you can chose to also scroll down the list 
-and click the country you want to search on. The layout of this function, and also some of the functionality, we have gotten from Material-UI.
+We have implemented the search functionality with a search field where you can type in the name of a country and the website then shows information about that 
+specific country. The search functionality also autocompletes, and shows a list of all the countries. In this way you can either type in the country, or find 
+it in the provided list.
+The layout of this function, and also some of the functionality, is retrieved from Material-UI.
 
 #### List-based scrolling 
-We represent the countries in form of a list, where they are sorted on the parameter you chose (overall rank by default). The list is by default a size of ten objects, and when 
+We represent the countries in form of a list, where they are sorted on a parameter of choice (overall rank by default). The list is by default a size of ten objects, and when 
 loading more elements, it expands by ten countries at a time. In this way we use scrolling and dynamical loading of elements to show the countries.
 
 #### Possibility to see more details
-For every country there is possible to show details about all parameters. This is done by searching on/chosing the country you would like to see more information about, and then 
-all information is displayed. 
+For every country there is possible to show the value of all parameters. This is done by searching on/chosing the country you would like to see more information about, and then 
+all the information is displayed in a popup-window that you can close by clicking outisde the window. 
 
 #### Sorting and filtering
-There is possible to sort the dataset on category. Within the chosen category the countries is also automatically sorted from best to worst (ascending order). 
+It is possible to sort the dataset based on their score in a category. 
+Within the chosen category the countries are automatically sorted in ascending order (best to worst in some categories, and worst to best in others). 
 
 
 #### User interaction
-It is possible to like/upvote each country. This increases the country's number of likes and is saved to the database (saved persistantly to the server). 
+We tried to develop a button in the popup-window that would increase the number of likes for a country by one, and save this persistantly on the server. This functionality is not
+working, but the code for it can be found in the project in my-search-app/components/CountrySearchName.tsx and backend/routes/countries.ts.
 
 #### Design and solutions 
 
@@ -114,7 +118,7 @@ A skip value in redux is used for the pagination of the table.
 
 
 #### Backend 
-We have used MongoDB as database because this is a popular choice with a lot of documentation that turned out to be helpful. We used a ...API(?) which consisted of [...]-files.
+We have used MongoDB as database because this is a popular choice with a lot of documentation that turned out to be helpful. We used a custom restAPI.
 
 
 #### Express 
