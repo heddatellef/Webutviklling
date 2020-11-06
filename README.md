@@ -58,7 +58,7 @@ Other dependencies:
 ## Testing 
 We have done e-2-e-testing using Cypress where we go through the search function and that the data has loaded and the load more function.
 We have also created a test with jest which tests redux.
-
+We chose cypress and jest as they were easy to use and were recommended in the testing lecture.
 
 ## Documentation 
 ### Content and functionality
