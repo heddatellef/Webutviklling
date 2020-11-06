@@ -4,10 +4,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
-import {ICountry, ICountryState} from '../Redux/types/countries';
-import { useDispatch, useSelector } from 'react-redux';
-import { emptyList, getErrorMessage, getSearched, setCategory, setSkip } from '../Redux/Actions/countries';
+import { useDispatch } from 'react-redux';
+import { emptyList, getErrorMessage, getSearched, setCategory } from '../Redux/Actions/countries';
 import Axios from 'axios';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -26,9 +24,6 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function ChoseCategory() {
 
   const dispatch = useDispatch();
-  const skip = useSelector<ICountryState, ICountryState["skip"]>((state) => state.skip); //get current skip
-  const category = useSelector<ICountryState, ICountryState["category"]>((state) => state.category); //get current category
-  const countries: ICountry[] = useSelector ((state: ICountryState) => state.countries)
   
   const classes = useStyles();
   const [open, setOpen] = useState(false);
@@ -36,7 +31,6 @@ export default function ChoseCategory() {
   const handleChange = async (event: React.ChangeEvent<{ value: any }>) => {
     dispatch(emptyList())
     dispatch(setCategory(event.target.value));
-    console.log("Search Category global:", category);
     try {
       const result = await Axios.get (`http://localhost:8001?category=${event.target.value}&limit=10&skip=`) 
       dispatch(getSearched(result.data))
@@ -54,15 +48,11 @@ export default function ChoseCategory() {
     setOpen(true);
   };
 
-  const onClick = () => {
-
-  }
-
   return (
     <div>
       
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">Sort by category...</InputLabel>
+        <InputLabel id="demo-controlled-open-select-label">Rank by category...</InputLabel>
         <Select
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
@@ -75,7 +65,7 @@ export default function ChoseCategory() {
           <MenuItem value=""  >
             <em>None</em>
           </MenuItem>
-          <MenuItem value={"Overall_rank"}>Overall rank</MenuItem>
+          <MenuItem value={"Overall_rank"}>Overall hapiness rank</MenuItem>
           <MenuItem value={"GDP_per_capita"}>GDP per capita</MenuItem>
           <MenuItem value={"Social_support"}>Social support</MenuItem>
           <MenuItem value={"Healthy_life_expectancy"}>Healthy life expectancy</MenuItem>
@@ -83,7 +73,6 @@ export default function ChoseCategory() {
           <MenuItem value={"Generosity"}>Generosity</MenuItem>
           <MenuItem value={"Perceptions_of_corruption"}>Perception of corruption</MenuItem>
         </Select>
-        <Button color="primary" >Search</Button>
       </FormControl>
     </div>
   );

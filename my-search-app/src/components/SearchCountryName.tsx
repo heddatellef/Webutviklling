@@ -5,8 +5,6 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { setSearchWord } from "../Redux/Actions/countries";
-import { useSelector, useDispatch } from "react-redux";
 import { ICountry } from '../Redux/types/countries';
 import './popup.css';
 import { IconButton } from '@material-ui/core';
@@ -41,7 +39,6 @@ export default function CountrySelect() {
 
   //for å få opp alle land og velge land
   const [countries, setCountries] = useState<CountryType[]>([]);
-  console.log(countries);
 
 
 //fetcher data og legger det i et interface
@@ -65,7 +62,6 @@ export default function CountrySelect() {
   //opdaterer value når man skriver i søkefeltet
   const handleSearchChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(event.target.value);
-    console.log("Value: ", value);
   }
 
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -73,11 +69,9 @@ export default function CountrySelect() {
   //åpner popup vindu når man trykker "Search". Vil også at denne funksjonen skal sette value til det som står i search field 
   const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
-    console.log("Anchor: ", anchorEl);
 
     const res = await fetch("http://localhost:8001/"+value);
       const jsonres: ICountry[]  = await res.json();
-      console.log(jsonres);
       setCountry(jsonres[0]);
 
   };
@@ -116,8 +110,7 @@ export default function CountrySelect() {
       onChange={(e: object, value: any | null) => {
         if (value !== null) {
           setValue(value.label)
-        }
-        console.log(value)}}
+        }}}
       autoHighlight
       getOptionLabel={(option) => option.label}
       renderOption={(option) => (
@@ -155,8 +148,8 @@ export default function CountrySelect() {
       >
         <Typography className={classes.typography}>
          <h5>{country?.["Country_or_region"]}</h5>
-         <div>Overall rank: {country?.["Overall_rank"]}</div>
-         <div className="smallDiv"> The overall rank explains how a country is rated compared to the other countries.</div>
+         <div>Overall happiness rank: {country?.["Overall_rank"]}</div>
+         <div className="smallDiv"> The overall happiness rank explains how a country is rated compared to the other countries.</div>
          <div>GDP per capita: {country?.["GDP_per_capita"]}</div>
          <div className="smallDiv">Per capita gross domestic product (GDP) is a metric that breaks down a country's economic output per person and is calculated by dividing the GDP of a country by its population.</div>
          <div>Social support: {country?.["Social_support"]}</div>

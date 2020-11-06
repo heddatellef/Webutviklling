@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 import { ICountry, ICountryState } from '../Redux/types/countries';
 import Axios from 'axios';
-import { getErrorMessage, getSearched, setSkip, setCategory } from '../Redux/Actions/countries';
+import { getErrorMessage, getSearched, setSkip } from '../Redux/Actions/countries';
 import CountryListElement from './CountryListElement';
 import { Button, Table } from '@material-ui/core';
 import './CountryTable.css';
@@ -12,10 +11,7 @@ const CountryTable = () => {
     const countries: ICountry[] = useSelector (
         (state: ICountryState) => state.countries)
     const dispatch = useDispatch();
-    const searchWord = useSelector<ICountryState, ICountryState["searchWord"]>((state) => state.searchWord); //get current search word
     const skip = useSelector<ICountryState, ICountryState["skip"]>((state) => state.skip); //get current skip
-    const sort = useSelector<ICountryState, ICountryState["sort"]>((state) => state.sort); //get current sort
-    const limit = useSelector<ICountryState, ICountryState["limit"]>((state) => state.limit); //get current sort
     const category = useSelector<ICountryState, ICountryState["category"]>((state) => state.category); //get current category
 
     useEffect(() => {     
@@ -40,8 +36,8 @@ const CountryTable = () => {
                 <Table >
                     <thead>
                         <tr>
-                            <th>Country</th>
-                            <th>Overall rank</th>
+                            <th>COUNTRY</th>
+                            <th>Overall happiness rank</th>
                             <th>GDP per capita</th>
                             <th>Social support</th>
                             <th>Healty life expectancy</th>
@@ -55,7 +51,9 @@ const CountryTable = () => {
                     </tbody>
                 </Table>
             </div>
-        <Button onClick={() => loadMoreCountryClick()}>Load more...</Button>
+            <br/>
+            <br/>
+        <Button color="primary" onClick={() => loadMoreCountryClick()}>Load more...</Button>
         </div>
     );
 };
