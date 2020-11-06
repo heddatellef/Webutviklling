@@ -23,8 +23,8 @@ Country.find()
 .limit(Number(limit))
 .then((countries: any) =>  res.json(countries))});
 
-/*
-router.get('/', (req: Request, res: Response) => {
+
+router.get('/countries', (req: Request, res: Response) => {
   Country.find()
   .then(countries => res.json(countries));
 });

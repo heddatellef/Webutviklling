@@ -49,7 +49,7 @@ export default function CountrySelect() {
 //fetcher data og legger det i et interface
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("http://localhost:8001/");
+      const res = await fetch("http://localhost:8001/countries");
       const jsonres: CountryInterfaceFromBackend[]  = await res.json();
       //Sørger for at label i "backend-interfacet" (CountryInterfaceFromBackend) mapper til label i det "frontend-interfacet" (CountryType)
       const fetchedCountries: CountryType[] = jsonres.map((value) => { return { label: value["Country_or_region"] }});
