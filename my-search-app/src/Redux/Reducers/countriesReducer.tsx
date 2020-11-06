@@ -73,6 +73,7 @@ export const countryReducer: Reducer<ICountryState, Action> = (
                 return state;            }
             state = {...state, countries:[]};
             return state
+
         default:
             return state
     }
