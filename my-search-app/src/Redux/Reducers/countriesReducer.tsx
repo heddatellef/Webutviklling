@@ -5,16 +5,32 @@ import {
 } from '../types/countries';
 import {COUNTRY} from '../types/actionTypes';
 import countries from '../../components/CountryListElement';
+import Axios from 'axios';
+import { getErrorMessage, getSearched } from '../Actions/countries';
+import { useDispatch } from 'react-redux';
+
+/*const dispatch = useDispatch();
+
+const setInitialCountries = async () => {
+    try {
+      const result = await Axios.get (`http://localhost:8001?category=&limit=10&skip=0`) 
+      return dispatch(getSearched(result.data))
+    }
+    catch(e){
+      dispatch(getErrorMessage("error"))
+    }
+}*/
 
 //state when starting the website
 const initialState = {
-    countries: [],
+    countries: [], //setInitialCountries
     searchWord: "",
     skip: 0,
     limit: 10,
     sort: 1,
     category: "",
 }
+
 
 //reducer list and filters/sort
 export const countryReducer: Reducer<ICountryState, Action> = (

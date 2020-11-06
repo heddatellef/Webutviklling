@@ -5,11 +5,11 @@ export const CountrySchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    "Overall rank": {
+    "Overall_rank": {
         type: String,
         required: true,
     },
-    "Country or region": {
+    "Country_or_region": {
         type: String, 
         required: true
     },
@@ -17,19 +17,19 @@ export const CountrySchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    "GDP per capita": {
+    "GDP_per_capita": {
         type: String,
         required: true,
     },
-    "Social support": {
+    "Social_support": {
         type: String,
         required: true,
     },
-    "Healthy life expectancy": {
+    "Healthy_life_expectancy": {
         type: String,
         required: true,
     },
-    "Freedom to make life choices": {
+    "Freedom_to_make_life_choices": {
         type: String,
         required: true,
     },
@@ -37,7 +37,7 @@ export const CountrySchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    "Perceptions of corruption": {
+    "Perceptions_of_corruption": {
         type: String,
         required: true,
     },

@@ -2,6 +2,7 @@ const router = require("express").Router();
 import { Request, Response} from "express";
 import Country from "./CountryModel";
 
+
 router.get("/", (req: Request, res: Response) => {
   let countries = req.query.countries;
   let searchWord = req.query.searchWord;
@@ -15,7 +16,7 @@ router.get("/", (req: Request, res: Response) => {
   else {
     category = "";
   }
-console.log("CATEGORY:",category)
+console.log("CATEGORY TEST:",category)
 Country.find()
 .sort(category)
 .skip(Number(skip))

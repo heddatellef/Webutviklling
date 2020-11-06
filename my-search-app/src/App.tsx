@@ -13,18 +13,15 @@ import CountryTable from './components/CountryTable';
 function App() {
   return (
     <div className="App"> 
-    <header className="top">
-      <LabelBottomNavigation />
-    </header>
-      <header className="App-header">
-        
+      <header className="App-header">  
         <CountrySelect />
-        <ChoseCategory />
-
         <Button color="primary">Search</Button>
-        <AddFavourite />
+        <ChoseCategory />
       </header>
       <CountryTable/>
+      <footer>
+        <p>© 2020</p>
+      </footer>
     </div>
   );
 }
