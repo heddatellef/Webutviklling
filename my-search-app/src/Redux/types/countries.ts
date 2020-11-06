@@ -1,14 +1,14 @@
 export interface ICountry {
     _id: String,
-    "Overall rank": String,
-    "Country or region": String,
+    "Overall_rank": String,
+    "Country_or_region": String,
     "Score": string,
-    "GDP per capita": string,
-    "Social support": string,
-    "Healthy life expectancy": string,
-    "Freedom to make life choices": string,
+    "GDP_per_capita": string,
+    "Social_support": string,
+    "Healthy_life_expectancy": string,
+    "Freedom_to_make_life_choices": string,
     "Generosity": string,
-    "Perceptions of corruption": string,
+    "Perceptions_of_corruption": string,
     "Likes": number
 }
 
