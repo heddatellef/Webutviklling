@@ -8,7 +8,8 @@ export interface ICountry {
     "Healthy life expectancy": string,
     "Freedom to make life choices": string,
     "Generosity": string,
-    "Perceptions of corruption": string
+    "Perceptions of corruption": string,
+    "Likes": number
 }
 
 export interface ICountryState{
