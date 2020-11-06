@@ -44,7 +44,6 @@ const CountryTable = () => {
     };
 
     
-
     return (
         <div>
             <div>

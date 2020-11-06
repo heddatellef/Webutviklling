@@ -23,7 +23,6 @@ mongoose.connect("mongodb://gruppe46:gruppe46@it2810-46.idi.ntnu.no:27017/gruppe
 
 
 app.use("/", CountryRoute);
-
     
 
 app.listen(port, () => console.log("App is listening on port: " + port));

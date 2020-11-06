@@ -10,6 +10,7 @@ import countries from '../../components/CountryListElement';
 const initialState = {
     countries: [],
     searchWord: "",
+    name: "",
     skip: 10,
     limit: 10,
     sort: -1,
