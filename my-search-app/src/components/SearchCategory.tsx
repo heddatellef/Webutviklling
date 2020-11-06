@@ -76,12 +76,12 @@ export default function ChoseCategory() {
             <em>None</em>
           </MenuItem>
           <MenuItem value={"Overall_rank"}>Overall rank</MenuItem>
-          <MenuItem value={"GDP_per_capita"}>GPD per capita</MenuItem>
+          <MenuItem value={"GDP_per_capita"}>GDP per capita</MenuItem>
           <MenuItem value={"Social_support"}>Social support</MenuItem>
           <MenuItem value={"Healthy_life_expectancy"}>Healthy life expectancy</MenuItem>
           <MenuItem value={"Freedom_to_make_life_choices"}>Freedom to make life choices</MenuItem>
           <MenuItem value={"Generosity"}>Generosity</MenuItem>
-          <MenuItem value={"Perception_of_corruption"}>Perception of corruption</MenuItem>
+          <MenuItem value={"Perceptions_of_corruption"}>Perception of corruption</MenuItem>
         </Select>
         <Button color="primary" >Search</Button>
       </FormControl>

@@ -18,26 +18,15 @@ const CountryTable = () => {
     const limit = useSelector<ICountryState, ICountryState["limit"]>((state) => state.limit); //get current sort
     const category = useSelector<ICountryState, ICountryState["category"]>((state) => state.category); //get current category
 
-    //const [Sk, setSk] = useState(10);
-    //const [Cat, setCat] = useState("");
-
     useEffect(() => {     
         loadMoreCountryClick();
     },[]);
 
     const loadMoreCountryClick = async() => {
         dispatch(setSkip(skip+10))
-        //setSk(Sk+10)
         try {
             const result = await Axios.get (`http://localhost:8001?category=${category}&limit=10&skip=${skip}`) 
             dispatch(getSearched(result.data))
-            console.log("getSearched",result.data)
-            console.log("contries:",countries)
-            console.log("result:",result)
-            //console.log("local skip:",Sk)
-            console.log("global skip:",skip)
-            console.log("limit:",limit)
-            console.log("category:", category)
         }
         catch(e){
             dispatch(getErrorMessage("error when searching"))
@@ -51,9 +40,14 @@ const CountryTable = () => {
                 <Table >
                     <thead>
                         <tr>
-                            <th>Value for selected category</th> 
                             <th>Country</th>
                             <th>Overall rank</th>
+                            <th>GDP per capita</th>
+                            <th>Social support</th>
+                            <th>Healty life expectancy</th>
+                            <th>Freedom to make life choices</th>
+                            <th>Generosity</th>
+                            <th>Perceptions of corruption</th>
                         </tr>
                     </thead>
                     <tbody>
