@@ -16,7 +16,6 @@ router.get("/", (req: Request, res: Response) => {
   else {
     category = "";
   }
-console.log("CATEGORY TEST:",category)
 Country.find()
 .sort(category)
 .skip(Number(skip))

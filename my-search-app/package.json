@@ -18,6 +18,7 @@
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.3",
     "cors": "^2.8.5",
+    "cypress": "^5.5.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.11",
     "react": "^16.13.1",
@@ -35,7 +36,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "cy:open": "cypress open",
-    "test:jest": "react-scripts test",
+    "test:jest": "react-scripts test --watchAll",
     "test:cy": "cypress run",
     "test": "npm run test:cy && npm run test:jest",
     "eject": "react-scripts eject"
