@@ -8,7 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { setSearchWord } from "../Redux/Actions/countries";
 import { useSelector, useDispatch } from "react-redux";
-
+import { ICountry } from '../Redux/types/countries';
+import './popup.css';
 
 // ISO 3166-1 alpha-2
 // ⚠️ No support for IE 11
@@ -49,10 +50,13 @@ export default function CountrySelect() {
       const fetchedCountries: CountryType[] = jsonres.map((value) => { return { label: value["Country or region"] }});
       setCountries(fetchedCountries);
 
+
     }
     fetchData(); 
     
   }, []);
+
+  const [country, setCountry] = useState<ICountry>();
 
   const [value, setValue] = useState("");
 
@@ -74,12 +78,17 @@ export default function CountrySelect() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
   //åpner popup vindu når man trykker "Search". Vil også at denne funksjonen skal sette value til det som står i search field 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
     console.log("Anchor: ", anchorEl);
-    
-    dispatch(setSearchWord(value));
-    
+
+    const res = await fetch("http://localhost:8001/"+value);
+      const jsonres: ICountry[]  = await res.json();
+      //Sørger for at label i "backend-interfacet" (CountryInterfaceFromBackend) mapper til label i det "frontend-interfacet" (CountryType)
+      //const fetchedCountries: CountryType[] = jsonres.map((value) => { return { label: value["Country or region"] }});
+      console.log(jsonres);
+      setCountry(jsonres[0]);
+
   }
 
   const handleClose = () => {
@@ -140,7 +149,16 @@ export default function CountrySelect() {
         }}
       >
         <Typography className={classes.typography}>
-          Country or region: {value}
+         <h5>{country?.["Country or region"]}</h5>
+         <div>Overall rank: {country?.["Overall rank"]}</div>
+         <div className="smallDiv"> The overall rank explains how a country is rated compared to the other countries.</div>
+         <div>GDP per capita: {country?.["GDP per capita"]}</div>
+         <div className="smallDiv">Per capita gross domestic product (GDP) is a metric that breaks down a country's economic output per person and is calculated by dividing the GDP of a country by its population.</div>
+         <div>Social support: {country?.["Social support"]}</div>
+         <div>Healthy life expectancy: {country?.["Healthy life expectancy"]}</div>
+         <div>Freedom to make life choices: {country?.["Freedom to make life choices"]}</div>
+         <div>Generosity: {country?.["Generosity"]}</div>
+         <div>Perceptions of corruption: {country?.["Perceptions of corruption"]}</div>
         </Typography>
       </Popover>
 

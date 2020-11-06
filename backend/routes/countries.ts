@@ -24,4 +24,10 @@ router.get('/', (req: Request, res: Response) => {
   getCountries;
 });*/
 
+router.get('/:country', (req: Request, res: Response) => {
+  const country = req.params.country;
+  Country.find({"Country or region": country})
+  .then(countries => res.json(countries));
+});
+
 export default router;
