@@ -92,8 +92,8 @@ working, but the code for it can be found in the project in my-search-app/compon
 We have chosen to use components from material-UI to save time when developing the frontend design. 
 
 Since we use a dataset where it is interesting to compare the countries with each other on the different parameters they are judged on and that lead to their score, we chose to alway 
-have the data sorted in some way. In this way you can always se which countries that esxells in which areas. We found this to be an informative and intuitive way to deal 
-with the data. Since the parameters in them selves not are that informative, we chose not to filter based on these. For exapmple we found out that filtering on "overall rank
+have the data sorted in some way. In this way you can always se which countries that esxell in which areas. We found this to be an informative and intuitive way to deal 
+with the data. Since the parameters in them selves not are that informative, we chose not to filter based on these. For exapmple we found that filtering on "overall rank
 higher than 50" would be quite uninteresting, likeways with the other parameters. For this reason we chose to only sort based on order in the different categories. 
 
 #### Database 
@@ -115,6 +115,8 @@ interfaces, one for our reducers and one  to keep the different actions. We see 
 We have used React Redux for state management in our application. Redux makes is possible and easy to store and update global state. The global state is stores in Store. We use dispatch to send the action to a reducer. In our case, we only have one reducer; 
 countriesReducer.tsx. This will update the state based on which action, and which payload that has been sent from dispatch. We have used Redux to manipulate the table at the bottom of the website. Redux is used to save the category which the user has choisen to rank the results by.
 A skip value in redux is used for the pagination of the table.
+
+In the file SearchCountryName.tsx we have not used Redux given that we are only dealing with local state.
 
 
 #### Backend 
