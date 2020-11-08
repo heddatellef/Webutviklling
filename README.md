@@ -22,8 +22,8 @@ The website will now be running at http://localhost:3000
 
 To run the tests(needs to be done after backend and frontend have started):
 
-1: run npm install cypress in my-search-app
-2: run npm test
+1.  run npm install cypress in my-search-app
+2.  run npm test
 
 
 ## Motivation 
