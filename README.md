@@ -9,13 +9,14 @@ To install and start the project, do the following:
 1. Clone the repo: 
  git clone https://gitlab.stud.idi.ntnu.no/.git
 2. Install dependencies:
- npm install 
-3. Go into backend and start the server: cd backend
-npm start
+ - npm install 
+3. Go into backend and start the server: 
+- cd backend
+- npm start
 4. Go into frontend and start the server 
- cd ..
-cd my-search-app
-npm start
+ - cd ..
+- cd my-search-app
+- npm start
 
 The website will now be running at http://localhost:3000
 
